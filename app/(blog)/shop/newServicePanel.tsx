@@ -9,11 +9,13 @@ import {useContext, useState} from "react";
 import {MasonryPhotoAlbum, RenderImageContext, RenderImageProps, RowsPhotoAlbum} from "react-photo-album";
 import {PortableText, PortableTextBlock} from "next-sanity";
 import {Button, Carousel} from "react-bootstrap";
-import {CartItem} from "@/app/customTypes";
+import {CartItem, CustomSession} from "@/app/customTypes";
 import Image from "next/image";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import {useCart} from "@/app/(blog)/shop/cartProvider";
+import {session} from "next-auth/core/routes";
+import {useSession} from "next-auth/react";
 
 async function addToCart(cart: CartItem[] | undefined, item: CartItem, service_name: string, service_id: string) {
     if (!cart) {
@@ -46,7 +48,8 @@ async function addToCart(cart: CartItem[] | undefined, item: CartItem, service_n
 export default function NewServicePanel({service, ...props} : {service: any,}) {
 
     const {cart, setCart} = useCart();
-
+    // @ts-ignore
+    const {data: session, status} : {data: CustomSession, status: string | null} = useSession();
     const [index, setIndex] = useState(-1);
     const [images, setImages] = useState(service.images.map((image: any) => {
         return {
@@ -225,6 +228,11 @@ export default function NewServicePanel({service, ...props} : {service: any,}) {
                                                     <Button
                                                         variant={"success btn-sm"}
                                                         onClick={() => {
+                                                            if (!session) {
+                                                                alert("Please sign in to add to cart");
+                                                                return;
+                                                            }
+
                                                             adjustCartContext({...pm, service_title: service.title, service_id: service._id});
                                                             addToCart(cart, pm, service.title, service._id);
                                                         }}
