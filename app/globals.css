@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom{
+    color: inherit!important;
+    text-decoration: none!important;
+}
+
+.custom:hover{
+    text-decoration: underline!important;
+}
+
+.cart-toggle {
+    border-radius: 10px;
+    border-color: black;
+}
+.service-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+        "gi gi gi gi gi"
+        ". gd gd gp ."
+        ". gd gd gp ."
+        ". gd gd . ."
+        ". gd gd . ."
+        ". gd gd . .";
+    padding: 1rem;
+}
+.order-page {
+    text-align: center;
+}
+.order-panel {
+    padding-bottom: 10vh;
+}
+.order-total-panel {
+    display: inline-flex;
+    padding-top: 0.7rem;
+}
+.order-details-panel {
+    background-color: #e5e5e5;
+    width: 40vw;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.order-page-header {
+    padding-top: 6vw;
+}
+.oli-title{
+    text-align: left;
+    font-size: larger;
+    margin-bottom: 0.2rem !important;
+}
+.order-li-panel {
+    padding-bottom: 5px;
+}
+.order-li-details {
+    display: flex;
+    align-items: baseline;
+    font-size: smaller;
+}
+.order-li-details .lid-left,
+.order-li-details .lid-right {
+    flex: 1 0 auto;
+}
+.order-li-details .dots {
+    flex: 0 1 auto;
+    margin: 5px;
+    overflow: hidden;
+}
+/*.dots {*/
+/*    width: 100%;*/
+/*    !*background: radial-gradient(circle at 50% 0.8em, #999 8%, transparent 8%);*!*/
+/*    !*background-size: 0.5em;*!*/
+/*    !*background-repeat: repeat-x;*!*/
+/*    overflow: hidden;*/
+/*}*/
+.order-id-header{
+    display: inline-flex;
+}
+.dots::before {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    content:
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . "
+}
+@media (max-width: 699px) {
+    .service-grid {
+        grid-template-areas:
+            "gi gi gi gi gi"
+            "gi gi gi gi gi"
+            "gd gd gd gd gd"
+            "gd gd gd gd gd"
+            "gp gp gp gp gp"
+            "gp gp gp gp gp";
+    }
+}
+@media (min-width: 700px) {
+    .service-grid {
+        grid-template-areas:
+            "gic gic gic gic gic"
+            ". gd gd gp ."
+            ". gd gd gp ."
+            ". gd gd gp ."
+            ". gd gd gp ."
+            ". gd gd gp .";
+    }
+}
+.css-1mig4ck {
+    height: 40%;
+    width: 60%;
+    left: 20%;
+    top: 25%;
+    border-radius: 5px;
+    color: beige !important;
+    background-color: #008d51 !important;
+}
+.gd-small-description a {
+    color: inherit !important;
+}
+.gd-small-description {
+    font-size: smaller;
+    background-color: #495057;
+    color: #bdc8c6;
+    padding: 5px 0.8rem;
+    border-radius: 5px;
+    margin: 0.8rem 12vw 0;
+}
+.min-h-screen {
+    min-height: 95vh;
+}
+.gd-description {
+    font-size: medium;
+    font-weight: 350;
+    background-color: #495057;
+    color: #bdc8c6;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.main-nav{
+    z-index: 1;
+}
+.gp-inner {
+    background-color: #495057;
+    border-radius: 5px;
+    color: #bdc8c6;
+}
+.price-divider {
+    margin: 0 !important;
+}
+.list-inside {
+    padding: 5px 10px 5px 20px;
+    font-weight: lighter;
+}
+h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.gp-header {
+    background-color: #495057;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    text-align: -webkit-center;
+    border-radius: 5px 5px 0 0;
+}
+.cart-add{
+    border-radius: 7px !important;
+    height: inherit !important;
+    font-size: small !important;
+}
+.service-options-div{
+    align-items: baseline;
+    margin: 5px;
+    justify-content: space-between;
+}
+.price-li {
+    list-style-type: none;
+}
+ul {
+    list-style: circle;
+}
+/* Scale up the box */
+.image-gallery-image:hover {
+    transform: scale(1.01, 1.01);
+    cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 0 10px 5px white;
+}
+
+/* Fade in the pseudo-element with the bigger shadow */
+.image-gallery-image:hover::after {
+    opacity: 1;
+}
+.image-gallery-image::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.image-gallery-image {
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.back-to-services{
+    color: black;
+    text-decoration: none;
+}
+.cart-nav {
+    background-color: antiquewhite !important;
+    margin-bottom: unset !important;
+    /*display: contents;*/
+}
+.new-cart-nav {
+    position: absolute !important;
+    z-index: 2;
+    top: 5%;
+    left: 1%;
+    display: unset !important;
+}
+.new-cart-container{
+    display: contents;
+}
+@media (max-width: 575px) {
+    .new-cart-nav {
+        top: 21% !important;
+        left: 1%;
+    }
+}
+.shop-page {
+    background-color: antiquewhite;
+}
+.gi {
+    grid-area: gi;
+    justify-self: center;
+}
+.gii {
+    grid-area: gii;
+}
+.gd {
+    grid-area: gd;
+}
+
+.gp {
+    grid-area: gp;
+}
+.gic {
+    grid-area: gic;
+    height: 400px;
+}
+.services-background {
+    z-index: 0;
+    position: absolute;
+}
+.services-header-nav {
+    display: flex;
+    padding-top: 5vh;
+    z-index: 1;
+    position: relative;
+}
+.services-header {
+    justify-content: center;
+    display: grid;
+}
+.navbar-toggler-icon{
+    background-image: url("https://img.icons8.com/fluency/48/shopping-cart.png") !important;
+}
+.services-ul {
+    display: inline;
+    list-style-type: none;
+}
+.services-landing-page {
+    text-align: center;
+}
+.three-quarter-line{
+width: 75%;
+}
+.services-wrapper {
+    padding-top: 5vh;
+    height: 30vh;
+    z-index: 1;
+    position: relative;
+    width: 50%;
+    background-color: white;
+    margin: 10vh auto auto;
+    border-radius: 5px;
+}
+.left-align {
+    text-align: left;
+}
+.shop-layout {
+
+}
+.navbar-toggler {
+    /*background-color: wheat !important;*/
+}
+.navbar-nav {
+    align-items: center;
+}
+.service-panel {
+    margin: 0 5vw;
+    background-color: #132020;
+    color: #bdc8c6;
+    padding: 0.5rem;
+    border-radius: 5px;
+    z-index: 1;
+    position: relative;
+}
+
+.shop-panel {
+    background-color: antiquewhite;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.profile-panel {
+    width: 80vw;
+    margin: 10vh auto;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+
+/*<a href="https://www.flaticon.com/free-icons/smart-cart" title="smart cart icons">Smart cart icons created by Freepik - Flaticon</a>*/
