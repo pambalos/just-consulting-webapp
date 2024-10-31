@@ -7,6 +7,9 @@ import {useContext, useEffect, useState} from "react";
 import {CartItem, CustomSession} from "@/app/customTypes";
 import {useSession} from "next-auth/react";
 import {CartContext, useCart} from "@/app/(blog)/shop/cartProvider";
+import {Button} from "react-bootstrap";
+import {CgShoppingCart} from "react-icons/cg";
+import { ShoppingCart } from 'lucide-react';
 
 async function saveCart(cart: CartItem[]) {
     const cartJson = {
@@ -61,9 +64,22 @@ async function checkout(cart: CartItem[] | undefined, session: CustomSession | n
 
 export default function Cart() {
     const {cart, setCart} = useCart();
+    const [cartOpen, setCartOpen] = useState(false);
+    const [cartDisplayed, setCartDisplayed] = useState(false);
 
     // @ts-ignore
     const {data: session} : {data: CustomSession | null} = useSession();
+    const handleClose = () => {
+        setCartOpen(false)
+        setCartDisplayed(false)
+    };
+    const handleShow = () => {
+        setCartOpen(true)
+        // wait 500ms then set cart to displayed
+        setTimeout(() => {
+            setCartDisplayed(true)
+        }, 200);
+    };
 
     useEffect(() => {
         //set 'shop-link' active
@@ -82,77 +98,93 @@ export default function Cart() {
     }, [setCart]);
 
     return(
-        <Navbar key={"false"} expand={false} className={"new-cart-nav"}>
-            <Container fluid={true} className={"new-cart-container"}>
-                {/*<Navbar.Brand href="#">Shopping Cart</Navbar.Brand>*/}
-                <Navbar.Toggle className={"cart-toggle"} aria-controls={`offcanvasNavbar-expand-false`} />
-                <Navbar.Offcanvas
-                    id={`offcanvasNavbar-expand-false`}
-                    aria-labelledby={`offcanvasNavbarLabel-expand-false`}
-                    placement="end">
-                    <Offcanvas.Header className={"cart-open-button"} closeLabel={"cart-toggled"} closeButton>
-                        <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
-                            Shopping Cart
-                        </Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        <div className={"cart-navbar-list"}>
-                            {
-                                cart && Array.from(cart).map((product) => {
-                                    return (
-                                        <div className={"cart-panel-wrapper"} key={product._id + "-cart-panel"}>
-                                            <div className={"cart-panel"}>
-                                                <h4 className={"cart-name-header"}>{product.service_title}</h4>
-                                                <h5>{product.title}</h5>
-                                                <p>${product.price/100} : <button onClick={() => {
-                                                    let found = cart.find((prd) => prd._id === product._id);
-                                                    if (found) {
-                                                        if (found.quantity > 1) {
-                                                            found.quantity -= 1;
+    <>
+        {
+            session &&
+            (
+                <>
+                    <Button variant={"outline-light"}>
+                        <ShoppingCart onClick={handleShow} color={"gray"}/>
+                    </Button>
+                    <Navbar.Offcanvas
+                        show={cartOpen}
+                        onHide={handleClose}
+                        placement="end">
+                        <Offcanvas.Header className={"cart-open-button"} closeLabel={"cart-toggled"} closeButton>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
+                                Shopping Cart
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body id={"cart-offcanvas"}>
+                            <div className={"cart-navbar-list hidden-cart"}
+                                 style={
+                                     {
+                                         display: (cartDisplayed ? "block" : "none")
+                                     }
+                                 }
+                            >
+                                {
+                                    cart && Array.from(cart).map((product) => {
+                                        return (
+                                            <div className={"cart-panel-wrapper"} key={product._id + "-cart-panel"}>
+                                                <div className={"cart-panel"}>
+                                                    <h4 className={"cart-name-header"}>{product.service_title}</h4>
+                                                    <h5>{product.title}</h5>
+                                                    <p>${product.price / 100} : <button onClick={() => {
+                                                        let found = cart.find((prd) => prd._id === product._id);
+                                                        if (found) {
+                                                            if (found.quantity > 1) {
+                                                                found.quantity -= 1;
+                                                                setCart([...cart]);
+                                                                saveCart(cart);
+                                                            } else {
+                                                                let updatedCart = cart.filter((prd) => prd._id !== product._id);
+                                                                setCart(updatedCart);
+                                                                saveCart(updatedCart);
+                                                            }
+                                                        }
+                                                    }}>-</button> {product.quantity}x <button onClick={() => {
+                                                        let found = cart.find((prd) => prd._id === product._id);
+                                                        if (found) {
+                                                            found.quantity += 1;
                                                             setCart([...cart]);
                                                             saveCart(cart);
-                                                        } else {
-                                                            let updatedCart = cart.filter((prd) => prd._id !== product._id);
-                                                            setCart(updatedCart);
-                                                            saveCart(updatedCart);
                                                         }
-                                                    }
-                                                }}>-</button> {product.quantity}x <button onClick={() => {
-                                                    let found = cart.find((prd) => prd._id === product._id);
-                                                    if (found) {
-                                                        found.quantity += 1;
-                                                        setCart([...cart]);
-                                                        saveCart(cart);
-                                                    }
-                                                }}>+</button></p>
+                                                    }}>+</button></p>
 
-                                                <p className={"right-0"}>${(product.quantity*product.price)/100}</p>
+                                                    <p className={"right-0"}>${(product.quantity * product.price) / 100}</p>
+                                                </div>
+                                                <hr/>
                                             </div>
-                                            <hr/>
-                                        </div>
-                                    );
-                                })
-                            }
-                        </div>
-                        <div className={"cart-navbar-footer"}>
-                            {   cart && cart.length === 0 ?
-                                <>
-                                    <h6>Your cart is empty</h6>
-                                </>
-                                :
-                                <>
-                                    <button type="button" className="btn btn-success" onClick={() => checkout(cart, session)}>Checkout</button>
-                                    {/*<p>Total: ${*/}
-                                    {/*    cart.reduce((tot, product) => {*/}
-                                    {/*        return tot + (product.price * product.quantity)/100;*/}
-                                    {/*    }, 0)*/}
-                                    {/*}</p>*/}
-                                </>
-                            }
-                        </div>
-                    </Offcanvas.Body>
-                </Navbar.Offcanvas>
-            </Container>
-        </Navbar>
+                                        );
+                                    })
+                                }
+                            </div>
+                            <div className={"cart-navbar-footer"}>
+                                {cart && cart.length === 0 ?
+                                    <>
+                                        <h6>Your cart is empty</h6>
+                                    </>
+                                    :
+                                    <>
+                                        <button type="button" style={{
+                                            display: (cartDisplayed ? "block" : "none")
+                                        }} className="btn btn-success" onClick={() => checkout(cart, session)}>Checkout
+                                        </button>
+                                        {/*<p>Total: ${*/}
+                                        {/*    cart.reduce((tot, product) => {*/}
+                                        {/*        return tot + (product.price * product.quantity)/100;*/}
+                                        {/*    }, 0)*/}
+                                        {/*}</p>*/}
+                                    </>
+                                }
+                            </div>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </>
+            )
+        }
+
+    </>
     )
 }

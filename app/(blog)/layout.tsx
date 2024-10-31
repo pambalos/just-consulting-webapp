@@ -19,6 +19,7 @@ import SiteNavbar from "@/app/navbar";
 import {getServerSession, NextAuthOptions} from "next-auth";
 import {CartItem, CustomSession} from "@/app/customTypes";
 import {AuthOptions} from "@/app/auth";
+import {CartProvider} from "@/app/(blog)/shop/cartProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch({
@@ -85,27 +86,6 @@ async function getSessionServerUtil(authOptions: NextAuthOptions) : Promise<Cust
   return await getServerSession(authOptions);
 }
 
-async function saveCart(cart: CartItem[]) {
-  const cartJson = {
-    "cart":
-        cart.map((product) => {
-          return JSON.stringify(product);
-        })
-  };
-  try {
-    await fetch("/api/cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cartJson)
-    })
-  } catch (error) {
-    console.error("KV Error: ", error);
-  }
-  return void 0;
-}
-
 export const revalidate = 60;
 
 export default async function RootLayout({
@@ -120,7 +100,7 @@ export default async function RootLayout({
     {/*<Provider store={store}>*/}
       <body>
         <Providers>
-          {/*<CartProvider>*/}
+          <CartProvider>
             <header className="">
               <SiteNavbar session={session} />
             </header>
@@ -134,7 +114,7 @@ export default async function RootLayout({
             </section>
             {draftMode().isEnabled && <VisualEditing />}
             <SpeedInsights />
-          {/*</CartProvider>*/}
+          </CartProvider>
         </Providers>
       </body>
     {/*</Provider>*/}

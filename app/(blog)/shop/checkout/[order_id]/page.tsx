@@ -102,7 +102,7 @@ export default function CheckoutPage() {
                     </div>
                 ) : (
                     <div>
-                        <p>Session is null</p>
+                        <p>Fetching details...</p>
                     </div>
                 )
             }

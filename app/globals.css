@@ -325,6 +325,20 @@ width: 75%;
 .shop-layout {
 
 }
+.hidden-cart {
+    display: none;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-delay: 500ms;
+    transition-property: display;
+}
+.shown-cart {
+    display: block !important;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-delay: 500ms;
+    transition-property: display;
+}
 .navbar-toggler {
     /*background-color: wheat !important;*/
 }
