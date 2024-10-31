@@ -23,7 +23,7 @@ export default function SiteNavbar({session} : {session: any}) {
                     {/*<NavbarToggle aria-controls="basic-navbar-nav" />*/}
                     <NavbarCollapse id={"basic-navbar-nav"}>
                         <Nav className={"me-auto left-1"} >
-                            <NavLink id={"blog-link"} key={"home"} href={"/"}>Blog</NavLink>
+                            {/*<NavLink id={"blog-link"} key={"home"} href={"/"}>Blog</NavLink>*/}
                             {/*<NavLink id={"session-link"} key={"session-details"} href={"/account"}>Session Details</NavLink>*/}
                         </Nav>
                         <Nav className={"right-1"}>
