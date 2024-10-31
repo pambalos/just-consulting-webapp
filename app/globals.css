@@ -325,6 +325,12 @@ width: 75%;
 .left-align {
     text-align: left;
 }
+@media (min-width: 1750px) {
+    .shop-layout {
+        width: 80%;
+        margin: auto;
+    }
+}
 .shop-layout {
 
 }
