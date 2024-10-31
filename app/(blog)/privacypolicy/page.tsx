@@ -6,10 +6,10 @@ export default function PrivacyPolicy() {
         <div className="page_main__SdEtU">
             
             <h1>Privacy Policy</h1>
-            <p>The management team has the following privacy policy (hereinafter referred to as "this policy") regarding the handling of user's personal information in the service provided on this application (hereinafter referred to as "this service").
+            <p>The management team has the following privacy policy (hereinafter referred to as &#34;this policy&#34;) regarding the handling of user&#39;s personal information in the service provided on this application (hereinafter referred to as &#34;this service&#34;).
             To determine.</p>
             <h2>Article 1 (Personal information)</h2>
-            <p>"Personal information" shall refer to "personal information" as defined in the Personal Information Protection Law, and is information about living individuals, such as profiles (including name, email address, and icons) and other information contained in the information.
+            <p>&#34;Personal information&#34; shall refer to &#34;personal information&#34; as defined in the Personal Information Protection Law, and is information about living individuals, such as profiles (including name, email address, and icons) and other information contained in the information.
             Information that can identify a specific individual by description, etc., and information that can identify a specific individual (personal identification information) such as appearance.</p><h2>Article 2 (How to collect personal information)</h2><p>This service does not collect the data of the text to be translated or the translated text.
             Such information is kept only within the app.
             We collect the text to be translated and general access information other than the translated text and send it to the analysis service.<br/></p><h2>Article 3 (Handling of acquired personal information)</h2><p>The data sent to the analysis service will be handled for the purpose of providing and operating this service.
