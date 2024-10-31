@@ -15,7 +15,6 @@ export default function ConfirmationPage() {
             const resp = await fetch("/api/checkout/confirmation/" + orderId)
             if (resp.ok) {
                 const respBody = await resp.json()
-                console.log("respBody", respBody)
                 return respBody
             }
         }

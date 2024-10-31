@@ -31,7 +31,6 @@ async function fetchService(slug: string) {
 }
 
 export default async function ServicePage({ params }: Props) {
-    console.log("service page params", params);
     const  service = await fetchService(params.slug);
     const shopSettings = await sanityFetch({
             query: shopSettingsQuery,

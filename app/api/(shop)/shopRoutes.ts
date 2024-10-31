@@ -19,7 +19,6 @@ export async function checkoutPOST(request: Request) {
 
     //TODO: delete old draft orders
     const cart : {cart: CartItem[]} = await request.json()
-    console.log("POST Checkout Cart", cart)
 
     const squareOrder = {
         location_id: process.env.SQUARE_LOCATION_ID,
@@ -37,7 +36,6 @@ export async function checkoutPOST(request: Request) {
             }
         })
     }
-    console.log("POST Checkout Square Order", JSON.stringify({"order":squareOrder}))
 
     const checkout_url = process.env.SQUARE_BASE_URL + "/v2/online-checkout/payment-links"
     const checkout_body = JSON.stringify({
@@ -53,7 +51,6 @@ export async function checkoutPOST(request: Request) {
         }
     });
 
-    console.log("POST Checkout Square Payment Link", checkout_body)
     const checkout_response = await fetch(checkout_url, {
         method: "POST",
         headers: SquareHeaders(),
@@ -62,7 +59,6 @@ export async function checkoutPOST(request: Request) {
 
     if (checkout_response.ok) {
         const checkout_resp = await checkout_response.json()
-        console.log("POST Checkout Square Payment Link Response", checkout_resp)
         const order_id = checkout_resp.payment_link.order_id
         // Save order details to the database
         try {
@@ -90,7 +86,6 @@ export async function checkoutPOST(request: Request) {
                 item.note
             ]
         })
-        console.log("POST Checkout Square Payment Link Line Items for DB", line_items)
         try {
             for (const item of line_items) {
                 await sql`INSERT INTO order_line_items (order_id, name, variation_name, quantity, base_price_cents, currency, note) VALUES (${item[0]}, ${item[1]}, ${item[2]}, ${item[3]}, ${item[4]}, ${item[5]}, ${item[6]})`
@@ -101,7 +96,7 @@ export async function checkoutPOST(request: Request) {
 
         return new Response(JSON.stringify({order_id: order_id}), {status: 200})
     } else {
-        console.log("POST Checkout Square Payment Link Failed", checkout_response)
+        console.error("POST Checkout Square Payment Link Failed", checkout_response)
     }
     return new Response("Failed", {status: 500})
 }
@@ -113,7 +108,6 @@ export async function checkoutOrderIdGET(request: Request) {
     }
     // get the order id from request
     const order_id = request.url.split("/").pop()
-    console.log("GET Checkout Order ID", order_id)
 
     // check that the order id belongs to the user
     const orderResponse = await sql`SELECT * FROM orders WHERE order_id = ${order_id} AND user_id = ${session.token.sub}`
@@ -124,9 +118,7 @@ export async function checkoutOrderIdGET(request: Request) {
     })
     if (orderDetailsResponse.ok) {
         const orderDetails = await orderDetailsResponse.json()
-        console.log("GET Checkout Order Details", orderDetails)
         // @ts-ignore
-        console.log("GET Checkout Order Response", orderResponse.rows[0])
         return new Response(JSON.stringify({...orderDetails, order_details: orderResponse.rows[0]},), {status: 200})
     } else {
         return new Response("Not Found", {status: 404})
@@ -140,7 +132,6 @@ export async function checkoutConfirmationOrderIdGET(request: Request) {
     }
     // get the order id from request
     const order_id = request.url.split("/").pop()
-    console.log("GET Checkout Order ID", order_id)
 
     // fetch order details from square
     const orderDetailsResponse = await fetch(process.env.SQUARE_BASE_URL + "/v2/orders/" + order_id, {
@@ -149,7 +140,6 @@ export async function checkoutConfirmationOrderIdGET(request: Request) {
     })
     if (orderDetailsResponse.ok) {
         const orderDetails = await orderDetailsResponse.json()
-        console.log("GET Checkout Order Details", orderDetails)
 
         // update order status in the database
         try {
@@ -171,10 +161,8 @@ export async function cartGET(request: Request) {
     }
     // fetch from KV
     const cart : {cart: CartItem[]} | null = await kv.get(session.token.user_id + "_cart")
-    console.log("GET Cart, fetched", cart)
 
     if (!cart) {
-        console.log("GET Cart, empty")
         return new Response(JSON.stringify({"cart": []}), {status: 200})
     }
     return new Response(JSON.stringify(cart), {status: 200})
@@ -187,7 +175,6 @@ export async function cartPOST(request: Request) {
     }
     try {
         const cart : CartItem[] = await request.json()
-        console.log("POST Cart", cart)
         await kv.set(session.token.user_id + "_cart", cart)
         return new Response(JSON.stringify(cart), {status: 200})
     } catch (e) {

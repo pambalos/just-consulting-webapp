@@ -39,9 +39,7 @@ async function addToCart(cart: CartItem[] | undefined, item: CartItem, service_n
     } else {
         alert("Failed to add to cart");
     }
-    console.log("Add to Cart Response", response);
     const data = await response.json();
-    console.log("Add to Cart Data", data);
     return data;
 }
 
@@ -61,7 +59,6 @@ export default function NewServicePanel({service, ...props} : {service: any,}) {
             height: image.asset.metadata?.dimensions.height || 0,
         }
     }));
-    console.log("Service Images", images);
     function adjustCartContext(adjustedCartItem: CartItem) {
         if (cart?.length === 0) {
             setCart([{...adjustedCartItem, quantity: 1}]);
@@ -85,7 +82,6 @@ export default function NewServicePanel({service, ...props} : {service: any,}) {
     ) {
         // @ts-ignore
         let imageLength = service.images.length;
-        console.log("Photo", photo);
 
         return (
             <div style={{
@@ -110,7 +106,6 @@ export default function NewServicePanel({service, ...props} : {service: any,}) {
 
     function getImageURLWithSize(image: any, size: number) {
         let url = urlBuilder(sanityConfig).image(image.src).width(size).height(size).url() || ""
-        console.log("sized Image URL", url);
         return urlBuilder(sanityConfig).image(image.src).width(size).height(size).url() || "";
     }
 

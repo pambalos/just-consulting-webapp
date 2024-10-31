@@ -13,7 +13,6 @@ import {sanityConfig} from "@/app/utils";
 export default async function ServiceLandingPage(
     {params}: any
 ) {
-    console.log("service landing page params", params);
     const [shopSettings, services] = await Promise.all([
         sanityFetch({
             query: shopSettingsQuery,
@@ -21,7 +20,6 @@ export default async function ServiceLandingPage(
         sanityFetch({ query: servicesQuery }),
     ]);
 
-    console.log("shop settings", shopSettings);
 
     return (
         <div className={"services-landing-page"}>
