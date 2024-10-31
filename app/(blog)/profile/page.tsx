@@ -10,6 +10,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Image from "next/image";
 
 function Row(props: { row: ReturnType<any> }) {
     const { row } = props;
@@ -100,7 +101,10 @@ export default function ProfilePage() {
         <div className={"profile-page"}>
             <div className={"profile-panel"}>
                 <div className={"profile-picture-panel"}>
-                    <img src={profile?.user.image} alt={"profile picture"} />
+                    {
+                        profile?.user.image &&
+                        <Image src={profile?.user.image} alt={"profile picture"} />
+                    }
                 </div>
                 <div className={"profile-details"}>
                     <h2>{profile?.user.name}</h2>
