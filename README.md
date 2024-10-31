@@ -21,6 +21,18 @@ This webapp is deployed on Vercel and can be accessed [here](https://www.just-co
 3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 4. Deploy to prod by pushing to main branch
 
+## Tools
+- NextJS
+- React
+- Typescript
+- Vercel
+- AWS
+- Github (& Actions)
+- Sanity
+- PostgreSQL
+- Redis
+- Square
+
 ## Platforms
 - Vercel: https://vercel.com/bradley-justices-projects/blog-next-sanity
 - Sanity: https://www.sanity.io/manage/personal/project/k3xn62gp

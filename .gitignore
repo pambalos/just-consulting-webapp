@@ -37,6 +37,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+package-lock.json
 
 # Env files created by scripts for working locally
 .env
