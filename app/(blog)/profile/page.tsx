@@ -104,7 +104,7 @@ export default function ProfilePage() {
                 <div className={"profile-picture-panel"}>
                     {
                         profile?.user.image &&
-                        <Image src={profile?.user.image} width={200} height={200} alt={"profile picture"} />
+                        <Image src={profile?.user.image} width={150} height={150} alt={"profile picture"} />
                     }
                 </div>
                 <div className={"profile-details"}>
