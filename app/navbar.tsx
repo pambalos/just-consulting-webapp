@@ -6,9 +6,6 @@ import StudioLink from "@/app/components/studioLink";
 import ShopLink from "@/app/components/shoplink";
 import UserLogButton from "@/app/components/userLogButton";
 import { CgProfile } from "react-icons/cg";
-import Cart from "@/app/(blog)/shop/cart";
-
-
 
 export default function SiteNavbar({session} : {session: any}) {
     //get first path param

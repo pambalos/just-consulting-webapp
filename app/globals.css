@@ -242,14 +242,14 @@ ul {
     left: 1%;
     display: unset !important;
 }
-.new-cart-container{
-    display: contents;
-}
 @media (max-width: 575px) {
     .new-cart-nav {
-        top: 21% !important;
+        top: 16% !important;
         left: 1%;
     }
+}
+.new-cart-container{
+display: contents;
 }
 .shop-page {
     background-color: antiquewhite;
@@ -300,14 +300,18 @@ ul {
 width: 75%;
 }
 .services-wrapper {
-    padding-top: 5vh;
-    height: 30vh;
+    padding: 5vh 1vh;
     z-index: 1;
     position: relative;
     width: 50%;
     background-color: white;
     margin: 10vh auto auto;
     border-radius: 5px;
+}
+@media (max-width: 575px) {
+    .services-wrapper {
+        width: 80%;
+    }
 }
 .left-align {
     text-align: left;
