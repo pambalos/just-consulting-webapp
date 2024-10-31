@@ -248,6 +248,12 @@ ul {
         left: 1%;
     }
 }
+@media (max-width: 450px) {
+    .new-cart-nav {
+        top: 19% !important;
+        left: 1%;
+    }
+}
 .new-cart-container{
 display: contents;
 }
