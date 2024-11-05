@@ -5,7 +5,7 @@ import type {Metadata} from "next";
 import {type PortableTextBlock, toPlainText, VisualEditing,} from "next-sanity";
 import {Inter} from "next/font/google";
 import {draftMode} from "next/headers";
-import {Suspense, useContext} from "react";
+import {Suspense} from "react";
 
 import AlertBanner from "./alert-banner";
 import PortableText from "./portable-text";
@@ -14,12 +14,12 @@ import * as demo from "@/sanity/lib/demo";
 import {sanityFetch} from "@/sanity/lib/fetch";
 import {settingsQuery} from "@/sanity/lib/queries";
 import {resolveOpenGraphImage} from "@/sanity/lib/utils";
-import {Providers} from "@/app/(blog)/providers";
+import {Providers} from "@/app/(frontend)/providers";
 import SiteNavbar from "@/app/navbar";
 import {getServerSession, NextAuthOptions} from "next-auth";
-import {CartItem, CustomSession} from "@/app/customTypes";
+import {CustomSession} from "@/app/customTypes";
 import {AuthOptions} from "@/app/auth";
-import {CartProvider} from "@/app/(blog)/shop/cartProvider";
+import {CartProvider} from "@/app/(frontend)/shop/cartProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch({
@@ -29,8 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
   });
   const title = settings?.title || demo.title;
   const description = settings?.description || demo.description;
-  const userToken = null;
-  const cart = null;
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage);
   let metadataBase: URL | undefined = undefined;

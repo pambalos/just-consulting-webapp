@@ -11,7 +11,6 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from "next/image";
-import urlBuilder from "@sanity/image-url";
 
 function Row(props: { row: ReturnType<any> }) {
     const { row } = props;

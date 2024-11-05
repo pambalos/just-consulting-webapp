@@ -1,10 +1,9 @@
 import {sanityFetch} from "@/sanity/lib/fetch";
-import {servicesQuery, settingsQuery, shopSettingsQuery} from "@/sanity/lib/queries";
-import * as demo from "@/sanity/lib/demo";
-import PortableText from "@/app/(blog)/portable-text";
+import {servicesQuery, shopSettingsQuery} from "@/sanity/lib/queries";
 import Image from "next/image";
 import urlBuilder from "@sanity/image-url";
 import {sanityConfig} from "@/app/utils";
+import PortableText from "@/app/(frontend)/portable-text";
 
 
 // collect shop settings from sanity

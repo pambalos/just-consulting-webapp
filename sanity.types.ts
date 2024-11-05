@@ -1102,14 +1102,14 @@ export type ServicesQueryResult = Array<{
   }> | null;
 }>;
 
-// Source: ./app/(blog)/posts/[slug]/page.tsx
+// Source: ./app/(frontend)/posts/[slug]/page.tsx
 // Variable: postSlugs
 // Query: *[_type == "post" && defined(slug.current)]{"slug": slug.current}
 export type PostSlugsResult = Array<{
   slug: string | null;
 }>;
 
-// Source: ./app/(blog)/shop/services/[slug]/page.tsx
+// Source: ./app/(frontend)/shop/services/[slug]/page.tsx
 // Variable: serviceSlugs
 // Query: *[_type == "services" && defined(slug.current)]{"slug": slug.current}
 export type ServiceSlugsResult = Array<{

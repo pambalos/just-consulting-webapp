@@ -1,7 +1,7 @@
 
 "use client";
 
-import {signIn, signOut, useSession} from "next-auth/react";
+import {signIn, signOut} from "next-auth/react";
 import {NavLink} from "react-bootstrap";
 
 export default function UserLogButton({session}: { session: any | null }) {

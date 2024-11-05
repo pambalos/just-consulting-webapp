@@ -2,11 +2,12 @@ import Container from "react-bootstrap/Container";
 import {NavbarBrand, NavbarCollapse, NavLink} from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from "react-bootstrap/Nav";
-import StudioLink from "@/app/components/studioLink";
-import ShopLink from "@/app/components/shoplink";
-import UserLogButton from "@/app/components/userLogButton";
+
 import { CgProfile } from "react-icons/cg";
-import Cart from "@/app/(blog)/shop/cart";
+import StudioLink from "@/app/(frontend)/components/studioLink";
+import ShopLink from "@/app/(frontend)/components/shoplink";
+import UserLogButton from "@/app/(frontend)/components/userLogButton";
+import Cart from "@/app/(frontend)/shop/cart";
 
 export default function SiteNavbar({session} : {session: any}) {
     //get first path param

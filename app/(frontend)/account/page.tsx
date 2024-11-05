@@ -1,7 +1,6 @@
 "use client";
 
 import {useSession} from "next-auth/react";
-import {getServerSession} from "next-auth";
 // set to client
 
 function AccountPage() {

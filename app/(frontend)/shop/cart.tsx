@@ -1,15 +1,13 @@
 "use client";
 
-import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {CartItem, CustomSession} from "@/app/customTypes";
 import {useSession} from "next-auth/react";
-import {CartContext, useCart} from "@/app/(blog)/shop/cartProvider";
 import {Button} from "react-bootstrap";
-import {CgShoppingCart} from "react-icons/cg";
 import { ShoppingCart } from 'lucide-react';
+import {useCart} from "@/app/(frontend)/shop/cartProvider";
 
 async function saveCart(cart: CartItem[]) {
     const cartJson = {

@@ -2,11 +2,11 @@ import {defineQuery} from "next-sanity";
 import {sanityFetch} from "@/sanity/lib/fetch";
 import {notFound} from "next/navigation";
 import {CartItem} from "@/app/customTypes";
-import NewServicePanel from "@/app/(blog)/shop/newServicePanel";
 import {fetchedSanityService, sanityConfig} from "@/app/utils";
-import {servicesQuery, shopSettingsQuery} from "@/sanity/lib/queries";
+import {shopSettingsQuery} from "@/sanity/lib/queries";
 import urlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import NewServicePanel from "@/app/(frontend)/shop/newServicePanel";
 
 
 type Props = {

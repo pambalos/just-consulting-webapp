@@ -5,17 +5,16 @@ import urlBuilder from "@sanity/image-url";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import {sanityConfig} from "@/app/utils";
-import {useContext, useState} from "react";
-import {MasonryPhotoAlbum, RenderImageContext, RenderImageProps, RowsPhotoAlbum} from "react-photo-album";
+import {useState} from "react";
+import {MasonryPhotoAlbum, RenderImageContext, RenderImageProps} from "react-photo-album";
 import {PortableText, PortableTextBlock} from "next-sanity";
 import {Button, Carousel} from "react-bootstrap";
 import {CartItem, CustomSession} from "@/app/customTypes";
 import Image from "next/image";
 import 'swiper/css';
 import 'swiper/css/navigation';
-import {useCart} from "@/app/(blog)/shop/cartProvider";
-import {session} from "next-auth/core/routes";
 import {useSession} from "next-auth/react";
+import {useCart} from "@/app/(frontend)/shop/cartProvider";
 
 async function addToCart(cart: CartItem[] | undefined, item: CartItem, service_name: string, service_id: string) {
     if (!cart) {
