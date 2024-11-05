@@ -80,8 +80,12 @@ export default function Cart() {
     };
 
     useEffect(() => {
-        //set 'shop-link' active
-        document.getElementById("shop-link")?.classList.add("active");
+        //set 'shop-link' active if on shop page
+        const path = window.location.pathname;
+        if (path.includes("/shop")) {
+            document.getElementById("shop-link")?.classList.add("active");
+        }
+        // document.getElementById("shop-link")?.classList.add("active");
 
         async function getCart() {
             const cart_response = await fetch("/api/cart");
@@ -169,11 +173,13 @@ export default function Cart() {
                                             display: (cartDisplayed ? "block" : "none")
                                         }} className="btn btn-success" onClick={() => checkout(cart, session)}>Checkout
                                         </button>
-                                        {/*<p>Total: ${*/}
-                                        {/*    cart.reduce((tot, product) => {*/}
-                                        {/*        return tot + (product.price * product.quantity)/100;*/}
-                                        {/*    }, 0)*/}
-                                        {/*}</p>*/}
+                                        <p style={{
+                                            display: (cartDisplayed ? "block" : "none")
+                                        }}>Total: ${
+                                            cart?.reduce((tot, product) => {
+                                                return tot + (product.price * product.quantity)/100;
+                                            }, 0)
+                                        }</p>
                                     </>
                                 }
                             </div>

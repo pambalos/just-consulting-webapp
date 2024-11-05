@@ -103,11 +103,6 @@ export default function NewServicePanel({service, ...props} : {service: any,}) {
         )
     }
 
-    function getImageURLWithSize(image: any, size: number) {
-        let url = urlBuilder(sanityConfig).image(image.src).width(size).height(size).url() || ""
-        return urlBuilder(sanityConfig).image(image.src).width(size).height(size).url() || "";
-    }
-
     let lightboxEnabled = false;
     let albumEnabled = false;
     let carouselEnabled = true;

@@ -8,16 +8,4 @@ export default function ShopLink({session}: { session: any | null }) {
             Shop
         </NavLink>
     )
-
-    // if (session?.user) {
-    //     return (
-    //         <NavLink id={"shop-link"} href="/shop">
-    //             Shop
-    //         </NavLink>
-    //     )
-    // } else {
-    //     return (
-    //         <></>
-    //     )
-    // }
 }

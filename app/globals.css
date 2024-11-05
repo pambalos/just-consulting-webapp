@@ -327,7 +327,7 @@ width: 75%;
 }
 @media (min-width: 1750px) {
     .shop-layout {
-        width: 80%;
+        width: 50%;
         margin: auto;
     }
 }
